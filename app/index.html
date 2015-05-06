@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+  </head>
+  <body ng-app="spwnedApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <nav class="deep-orange darken-1 navbar-fixed" role="navigation">
+      <div class="nav-wrapper container">
+        <div class="row">
+          <a id="logo-container" href="#" class="brand-logo">Spwned</a>
+          <div>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#/admin">Admin</a>
+              <li><a href="#/login">Login</a><li>
+              <li><a href="#/register">Register</a></li>
+              <li><a href="#/games">Games</a></li>
+              <li><a href="#/messages">Messages</a></li>
+              <li><a href="#/playerpanel">Player Panel</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#/admin">Admin</a>
+          <li><a href="#/login">Login</a><li>
+          <li><a href="#/register">Register</a></li>
+          <li><a href="#/games">Games</a></li>
+          <li><a href="#/messages">Messages</a></li>
+          <li><a href="#/playerpanel">Player Panel</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div ng-view=""></div>
+    </div>
+
+    <!-- Scripts -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/games.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/messages.js"></script>
+        <script src="scripts/controllers/playerpanel.js"></script>
+        <script src="scripts/services/messages.js"></script>
+        <script src="scripts/services/player.js"></script>
+        <script src="scripts/services/users.js"></script>
+        <script src="scripts/services/game.js"></script>
+        <!-- endbuild -->
+
+    <script src="scripts/materialize.min.js"></script>
+
+</body>
+</html>
