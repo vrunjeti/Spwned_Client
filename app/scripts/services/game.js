@@ -8,16 +8,28 @@
  * Factory in the spwnedApp.
  */
 angular.module('spwnedApp')
-  .factory('Game', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
+  .factory('Game', function ($http) {
+    // will set url once API is hosted
+    var url = '';
     return {
-      someMethod: function () {
-        return meaningOfLife;
+      getAllGames: function () {
+        return $http.get(url + 'game');
+      },
+      createGame: function(formData){
+        return $http.post(url + 'game', {
+          formData // use params
+        });
+      },
+      getGame: function(id){
+        return $http.get(url + 'game/' + id);
+      },
+      joinGame: function(formData){
+        return $http.post(url + 'game', {
+          formData // use params
+        });
+      },
+      deleteGame: function(id){
+        return $http.delete(url + 'game' + id);
       }
     };
   });
