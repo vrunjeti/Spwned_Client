@@ -17,15 +17,20 @@ angular.module('spwnedApp')
       },
       createGame: function(formData){
         return $http.post(url + 'game', {
-          formData // use params
+          title: formData.title,
+          description: formData.description,
+          admin_id: formData.admin_id,
+          start_date: formData.start_date,
+          end_date: formData.end_date,
+          capacity: formData.capacity
         });
       },
       getGame: function(id){
         return $http.get(url + 'game/' + id);
       },
-      joinGame: function(formData){
-        return $http.post(url + 'game', {
-          formData // use params
+      joinGame: function(gameId, userId){
+        return $http.post(url + 'game/' + gameId, {
+          user_id: userId
         });
       },
       deleteGame: function(id){
