@@ -15,7 +15,7 @@
     <!-- endbuild -->
     <link rel="stylesheet" href="styles/materialize.min.css">
   </head>
-  <body ng-app="spwnedApp">
+  <body ng-app="spwnedApp" ng-controller="MainCtrl as main">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -28,8 +28,8 @@
           <div>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="#/admin">Admin</a>
-              <li><a href="#/login">Login</a><li>
-              <li><a href="#/register">Register</a></li>
+              <li ng-class="main.isLoggedIn() ? 'hide' : '' "><a href="#/login">Login</a><li>
+              <li ng-class="main.isLoggedIn() ? 'hide' : '' "><a href="#/register">Register</a></li>
               <li><a href="#/games">Games</a></li>
               <li><a href="#/messages">Messages</a></li>
               <li><a href="#/playerpanel">Player Panel</a></li>

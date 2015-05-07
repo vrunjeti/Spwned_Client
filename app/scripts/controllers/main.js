@@ -51,4 +51,13 @@ angular.module('spwnedApp')
         });
     }
 
+    /**
+     * Boolean to determine if a user is logged in. Used for displaying and hiding nav bar items
+     * @return {Boolean} true if user is logged in, false if not
+     * @note   Gotta remember De Morgan's Law...
+     */
+    vm.isLoggedIn = function(){
+        return ($window.sessionStorage.token !== null && $window.sessionStorage.token !== undefined);
+    }
+
   });
