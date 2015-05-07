@@ -52,12 +52,31 @@ angular.module('spwnedApp')
     }
 
     /**
+     * Makes the browser think it's logged in (for testing authentication related classes)
+     */
+    vm.dummyLogin = function() {
+        if(!vm.isLoggedIn()) $window.sessionStorage.token = 'Dummy token for testing purposes';
+    }
+
+    /**
      * Boolean to determine if a user is logged in. Used for displaying and hiding nav bar items
      * @return {Boolean} true if user is logged in, false if not
      * @note   Gotta remember De Morgan's Law...
      */
     vm.isLoggedIn = function(){
         return ($window.sessionStorage.token !== null && $window.sessionStorage.token !== undefined);
+    }
+
+    /**
+     * Logs a user out (by deleting token) and redirects them to the login page
+     */
+    vm.logout = function() {
+        if(vm.isLoggedIn()){
+            // delete token
+            $window.sessionStorage.clear();
+            // redirect to login page
+            $location.path('/login');
+        }
     }
 
   });

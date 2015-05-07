@@ -28,8 +28,10 @@
           <div>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="#/admin">Admin</a>
+              <li ng-class="main.isLoggedIn() ? 'hide' : '' " ng-click="main.dummyLogin()"><a href="#/login">Dummy Login</a><li>
               <li ng-class="main.isLoggedIn() ? 'hide' : '' "><a href="#/login">Login</a><li>
               <li ng-class="main.isLoggedIn() ? 'hide' : '' "><a href="#/register">Register</a></li>
+              <li ng-class="!main.isLoggedIn() ? 'hide' : '' " ng-click="main.logout()"><a href="#">Log Out</a></li>
               <li><a href="#/games">Games</a></li>
               <li><a href="#/messages">Messages</a></li>
               <li><a href="#/playerpanel">Player Panel</a></li>
