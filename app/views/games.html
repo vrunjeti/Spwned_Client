@@ -1,1 +1,27 @@
-<p>This is the games view.</p>
+<div class="container">
+	<div class="row">
+		<table class="col s12 striped">
+			<thead>
+				<tr>
+					<th data-field="game-title">Game Name</th>
+					<th data-field="game-capacity">Capacity</th>
+					<th data-field="game-start">Start Date</th>
+					</th>					
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="game in games.allGames">
+					<td>{{game.title}}</td>
+					<td>{{games.game.data.capacity}}</td>
+					<td>{{games.game.data.start}}</td>
+				</tr>
+			
+			</tbody>
+		</table>
+
+	{{games.allGames}}
+
+	</div>
+</div>
+</div>
