@@ -12,8 +12,13 @@ angular.module('spwnedApp')
     // will set url once API is hosted
     var url = '';
     return {
-      getAllGames: function () {
-        return $http.get(url + 'game');
+      getAllGames: function (where, count) {
+        return $http.get(url + 'game', {
+          params: {
+            where: where,
+            count: count
+          }
+        });
       },
       createGame: function(formData){
         return $http.post(url + 'game', {
@@ -25,16 +30,19 @@ angular.module('spwnedApp')
           capacity: formData.capacity
         });
       },
-      getGame: function(id){
-        return $http.get(url + 'game/' + id);
+      getGame: function(gameId){
+        return $http.get(url + 'game/' + gameId);
       },
       joinGame: function(gameId, userId){
-        return $http.post(url + 'game/' + gameId, {
+        return $http.post(url + 'game/' + gameId + '/join', {
           user_id: userId
         });
       },
-      deleteGame: function(id){
-        return $http.delete(url + 'game' + id);
+      startGame: function(gameId){
+        return $http.put(url + gameId + '/start');
+      }
+      deleteGame: function(gameId){
+        return $http.delete(url + 'game' + gameId);
       }
     };
   });

@@ -39,27 +39,27 @@ angular
         controller: 'GamesCtrl',
         controllerAs: 'games'
       })
-      .when('/admin', {
+      .when('/games/:gameid/admin', {
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl',
         controllerAs: 'admin'
       })
-      .when('/adminpanel', {
+      .when('/games/:gameid/admin/adminpanel', {
         templateUrl: 'views/adminpanel.html',
         controller: 'AdminCtrl',
         controllerAs: 'admin'
       })
-      .when('/kills', {
+      .when('/games/:gameid/admin/kills', {
         templateUrl: 'views/kills.html',
         controller: 'AdminCtrl',
         controllerAs: 'kills'
       })
-      .when('/messages', {
+      .when('/messages/p/:playerid', {
         templateUrl: 'views/messages.html',
         controller: 'MessagesCtrl',
         controllerAs: 'messages'
       })
-      .when('/playerpanel', {
+      .when('/games/:gameid/player', {
         templateUrl: 'views/playerpanel.html',
         controller: 'PlayerpanelCtrl',
         controllerAs: 'player'
