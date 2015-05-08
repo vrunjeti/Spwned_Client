@@ -11,7 +11,7 @@ angular.module('spwnedApp')
   .controller('MainCtrl', function (Users, $http, $window, $location) {
     // bind vm to 'this'
     var vm = this;
-
+  
     /**
      * Creates a new user
      * @param  formData.firstName

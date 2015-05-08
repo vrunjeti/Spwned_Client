@@ -7,23 +7,25 @@
  * # GamesCtrl
  * Controller of the spwnedApp
  */
-angular.module('spwnedApp')
-  .controller('GamesCtrl', function (Game, $http) {
+ angular.module('spwnedApp')
+ .controller('GamesCtrl', function (Game, $http) {
     // bind vm to 'this'
     var vm = this;
+    
+    $http.get('./data/game.json').success(function(response) {
+      vm.allGames = response.data;
+    });
 
     /**
      * Gets all games
      * @return  A list of all games
      */
-    vm.getAllGames = function(){
-        Game.getAllGames()
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.getAllGames = function(){
+      Game.getAllGames()
+      .error(function(data) {
+      })
+      .success(function(data){
+      });
     }
 
     /**
@@ -36,28 +38,28 @@ angular.module('spwnedApp')
      * @param  formData.capacity
      * @return TBA
      */
-    vm.createGame = function(formData) {
-        Game.createGame(formData)
-        .error(function(data){
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.createGame = function(formData) {
+      Game.createGame(formData)
+      .error(function(data){
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
      * Gets a single game by id
      * @return  A single game
      */
-    vm.getGame = function(gameId){
-        Game.getGame(gameId)
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.getGame = function(gameId){
+      Game.getGame(gameId)
+      .error(function(data) {
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -66,14 +68,14 @@ angular.module('spwnedApp')
      * @param  userId
      * @return TBA
      */
-    vm.joinGame = function(gameId, userId) {
-        Game.joinGame(gameId, userId)
-        .error(function(data){
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.joinGame = function(gameId, userId) {
+      Game.joinGame(gameId, userId)
+      .error(function(data){
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -81,13 +83,13 @@ angular.module('spwnedApp')
      * @param  gameId
      * @return TBA
      */
-    vm.deleteGame = function(gameId){
-        Game.deleteGame(gameId)
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.deleteGame = function(gameId){
+      Game.deleteGame(gameId)
+      .error(function(data) {
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
   });
