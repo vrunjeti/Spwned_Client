@@ -23,5 +23,6 @@ angular.module('spwnedApp')
           admin_id: adminId
           // other info needed?
         });
-      },
+      }
+    }
   });
