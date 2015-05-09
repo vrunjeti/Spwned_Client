@@ -11,7 +11,7 @@ angular.module('spwnedApp')
   .controller('MainCtrl', function (Users, $http, $window, $location) {
     // bind vm to 'this'
     var vm = this;
-  
+
     /**
      * Creates a new user
      * @param  formData.firstName
@@ -35,7 +35,7 @@ angular.module('spwnedApp')
      * Logs a user in
      * @param  formData.email
      * @param  formData.password
-     * @return Relevant error messages or authentication token on success (?)
+     * @return Relevant error messages or user id on success
      */
     vm.login = function(formData) {
         Users.login(formData)
@@ -44,8 +44,11 @@ angular.module('spwnedApp')
             vm.loginErrorMsg = data.data;
         })
         .success(function(data){
-            // assuming authentication will provide token
-            $window.sessionStorage.token = data.token;
+            // store user's id for identification
+            $window.sessionStorage.userId = data.data._id;
+            // create (what will be) arrays to store admin and player ids
+            $window.sessionStorage.adminKeys = '';
+            $window.sessionStorage.playerKeys = '';
             // redirect to games view after logging in
             $location.path('/games');
         });
@@ -55,7 +58,12 @@ angular.module('spwnedApp')
      * Makes the browser think it's logged in (for testing authentication related classes)
      */
     vm.dummyLogin = function() {
-        if(!vm.isLoggedIn()) $window.sessionStorage.token = 'Dummy token for testing purposes';
+        if(!vm.isLoggedIn()){
+            $window.sessionStorage.userId = 'Dummy token for testing purposes';
+            // create arrays to store admin and player ids
+            $window.sessionStorage.adminKeys = '';
+            $window.sessionStorage.playerKeys = '';
+        }
     }
 
     /**
@@ -64,15 +72,15 @@ angular.module('spwnedApp')
      * @note   Gotta remember De Morgan's Law...
      */
     vm.isLoggedIn = function(){
-        return ($window.sessionStorage.token !== null && $window.sessionStorage.token !== undefined);
+        return ($window.sessionStorage.userId !== null && $window.sessionStorage.userId !== undefined);
     }
 
     /**
-     * Logs a user out (by deleting token) and redirects them to the login page
+     * Logs a user out (by deleting session storage) and redirects them to the login page
      */
     vm.logout = function() {
         if(vm.isLoggedIn()){
-            // delete token
+            // clear session storage (deletes userId)
             $window.sessionStorage.clear();
             // redirect to login page
             $location.path('/login');

@@ -24,14 +24,19 @@ angular.module('spwnedApp')
         return $http.post(url + 'game', {
           title: formData.title,
           description: formData.description,
-          admin_id: formData.admin_id,
-          start_date: formData.start_date,
-          end_date: formData.end_date,
+          user_id: formData.userId,
+          start_date: formData.startDate,
+          end_date: formData.endDate,
           capacity: formData.capacity
         });
       },
-      getGame: function(gameId){
-        return $http.get(url + 'game/' + gameId);
+      getGame: function(gameId, userId){
+        return $http.get(url + 'game/', {
+          params: {
+            game_id: gameId,
+            user_id: userId
+          }
+        });
       },
       joinGame: function(gameId, userId){
         return $http.post(url + 'game/' + gameId + '/join', {
@@ -40,7 +45,7 @@ angular.module('spwnedApp')
       },
       startGame: function(gameId){
         return $http.put(url + gameId + '/start');
-      }
+      },
       deleteGame: function(gameId){
         return $http.delete(url + 'game' + gameId);
       }

@@ -12,8 +12,8 @@ angular.module('spwnedApp')
     // will set url once API is hosted
     var url = '';
     return {
-      getAllPlayers: function (where, count) {
-        return $http.get(url + 'player', {
+      getAllPlayers: function (where, count, gameId) {
+        return $http.get(url + gameId + '/players', {
           params: {
             where: where,
             count: count
@@ -24,7 +24,8 @@ angular.module('spwnedApp')
         return $http.get(url + 'player/' + playerId);
       },
       reportKill: function(playerId, secretCode){
-        return $http.put(url + 'player/' + playerId + '/report', {
+        return $http.put(url + 'player/report', {
+          player_id: playerId,
           secret_code: secretCode
         });
       }
