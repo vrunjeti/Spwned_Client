@@ -19,13 +19,26 @@
     /**
      * Gets all games
      * @return  A list of all games
+     * @param   mongo where condition
+     * @param   mongo count condition (boolean)
      */
+<<<<<<< HEAD
+    vm.getAllGames = function(where, count){
+        Game.getAllGames(where, count)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+            /* Act on the event */
+        });
+=======
      vm.getAllGames = function(){
       Game.getAllGames()
       .error(function(data) {
       })
       .success(function(data){
       });
+>>>>>>> origin/master
     }
 
     /**
@@ -36,7 +49,7 @@
      * @param  formData.start_date
      * @param  formData.end_date
      * @param  formData.capacity
-     * @return TBA
+     * @return Relevant game data
      */
      vm.createGame = function(formData) {
       Game.createGame(formData)
@@ -66,7 +79,7 @@
      * Joins a user to a game
      * @param  gameId
      * @param  userId
-     * @return TBA
+     * @return user_id, game_id, player_id
      */
      vm.joinGame = function(gameId, userId) {
       Game.joinGame(gameId, userId)
@@ -76,6 +89,21 @@
       .success(function(data){
         /* Act on the event */
       });
+    }
+
+    /**
+     * Starts a game (call after all users have joined)
+     * @param  gameId
+     * @return Success message
+     */
+    vm.startGame = function(gameId) {
+        Game.startGame(gameId)
+        .error(function(data){
+            /* Act on the event */
+        })
+        .success(function(data){
+            /* Act on the event */
+        });
     }
 
     /**
