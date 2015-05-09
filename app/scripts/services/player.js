@@ -12,7 +12,7 @@ angular.module('spwnedApp')
     // will set url once API is hosted
     var url = '';
     return {
-      getAllPlayers: function (where, count, gameId) {
+      getAllPlayers: function (gameId, where, count) {
         return $http.get(url + gameId + '/players', {
           params: {
             where: where,
