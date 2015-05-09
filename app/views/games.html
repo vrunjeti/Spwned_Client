@@ -5,18 +5,23 @@
 				<tr>
 					<th data-field="game-title">Game Name</th>
 					<th data-field="game-capacity">Capacity</th>
-					<th data-field="game-start">Start Date</th>
+					<th data-field="game-start">Start Date (needs to be updated)</th>
 					</th>					
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr ng-repeat="game in games.allGames">
-					<td>{{game.title}}</td>
-					<td>{{games.game.data.capacity}}</td>
-					<td>{{games.game.data.start}}</td>
-				</tr>
-			
+					<td>
+						<a href="#/games/{{game._id}}">{{game.title}}</a>
+					</td>
+					<td>{{game.capacity}}</td>
+					<td><!-- {{game.start}} --></td>
+				
+					<td>
+						<a class="waves-effect waves-light btn">Join</a>
+					</td>
+				</tr>			
 			</tbody>
 		</table>
 
