@@ -32,10 +32,11 @@ angular.module('spwnedApp')
      * Remove registered player before game starts
      * @param  adminId
      * @param  playerId [player to remove]
+     * @param  gameId [game player to be removed is in]
      * @return ______
      */
-    vm.removePlayer = function(adminId, playerId){
-        Admin.removePlayer(adminId, playerId)
+    vm.removePlayer = function(adminId, playerId, gameId){
+        Admin.removePlayer(adminId, playerId, gameId)
         .error(function(data){
             /* Act on the event */
         })

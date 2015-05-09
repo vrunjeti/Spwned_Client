@@ -13,15 +13,29 @@ angular.module('spwnedApp')
     var url = '';
     return {
       deleteGame: function (adminId, gameId) {
-        return $http.delete(url + 'deleteGame');
+        return $http.delete(url + 'deleteGame', {
+          params: {
+            admin_id: adminId,
+            game_id: gameId
+          }
+        });
       },
-      removePlayer: function(adminId, playerId){
-        return $http.delete(url + 'deletePlayer');
+      removePlayer: function(adminId, playerId, gameId){
+        return $http.delete(url + 'deletePlayer', {
+          params: {
+            admin_id: adminId,
+            player_id: playerId,
+            game_id: gameId
+          }
+        });
       },
       startGame: function(adminId, gameId){
         return $http.put(url + 'admin/startGame', {
-          admin_id: adminId
-          // other info needed?
+          params: {
+            admin_id: adminId,
+            game_id: gameId
+            // other info needed?
+          }
         });
       }
     }
