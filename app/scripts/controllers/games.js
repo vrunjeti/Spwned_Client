@@ -92,21 +92,6 @@
     }
 
     /**
-     * Starts a game (call after all users have joined)
-     * @param  gameId
-     * @return Success message
-     */
-    vm.startGame = function(gameId) {
-        Game.startGame(gameId)
-        .error(function(data){
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
-    }
-
-    /**
      * Deletes a game
      * @param  gameId
      * @return TBA

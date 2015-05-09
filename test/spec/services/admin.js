@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: Admin', function () {
+describe('Service: admin', function () {
 
   // load the service's module
   beforeEach(module('spwnedApp'));
 
   // instantiate service
-  var Admin;
-  beforeEach(inject(function (_Admin_) {
-    Admin = _Admin_;
+  var admin;
+  beforeEach(inject(function (_admin_) {
+    admin = _admin_;
   }));
 
   it('should do something', function () {
-    expect(!!Admin).toBe(true);
+    expect(!!admin).toBe(true);
   });
 
 });

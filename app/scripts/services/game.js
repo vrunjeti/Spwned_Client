@@ -43,9 +43,6 @@ angular.module('spwnedApp')
           user_id: userId
         });
       },
-      startGame: function(gameId){
-        return $http.put(url + gameId + '/start');
-      },
       deleteGame: function(gameId){
         return $http.delete(url + 'game' + gameId);
       }
