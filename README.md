@@ -5,6 +5,8 @@ version 0.11.1.
 
 ## Setting Up
 
+Run `npm install -g grunt-cli bower yo generator-karma generator-angular`
+
 Run `npm install` and  `bower install`. Yeoman angular generator documentation is in the above link.
 
 ## Build & development
