@@ -8,7 +8,7 @@
  * Controller of the spwnedApp
  */
  angular.module('spwnedApp')
- .controller('GamesCtrl', function (Game, $http, $window) {
+ .controller('GamesCtrl', function (Game, $http, $window, $location) {
     // bind vm to 'this'
     var vm = this;
     $window.sessionStorage.baseurl = 'http://45.55.224.229:4000/api/';
@@ -29,7 +29,7 @@
       });
     });
 
-    
+
 
     /**
      * Gets all games
@@ -80,12 +80,14 @@
       })
       .success(function(data){
             // if user is admin of game, store admin id
-            if(data.data.admin_id){
-              vm.storeAdminId(data.data.admin_id);
+            if(data.data.admin_token){
+              vm.storeAdminId(data.data.admin_token);
+              $location.path('/games/' + data._id + '/admin');
             }
             // if user is player of game, store player id
-            else if(data.data.player_id){
-              vm.storePlayerId(data.data.player_id);
+            else if(data.data.player_token){
+              vm.storePlayerId(data.data.player_token);
+              $location.path('/games/' + data._id + '/player');
             }
           });
     }
