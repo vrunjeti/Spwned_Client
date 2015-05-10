@@ -11,10 +11,23 @@
  .controller('GamesCtrl', function (Game, $http, $window) {
     // bind vm to 'this'
     var vm = this;
+    var baseUrl = 
 
     $http.get('./data/game.json').success(function(response) {
-        vm.allGames = response.data;
+      vm.allGames = response.data;
     });
+
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 5 // Creates a dropdown of 15 years to control year
+      });
+    });
+
+    
 
     /**
      * Gets all games
@@ -22,14 +35,14 @@
      * @param   mongo where condition
      * @param   mongo count condition (boolean)
      */
-    vm.getAllGames = function(where, count){
-        Game.getAllGames(where, count)
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.getAllGames = function(where, count){
+      Game.getAllGames(where, count)
+      .error(function(data) {
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -42,14 +55,14 @@
      * @param  formData.capacity
      * @return Relevant game data
      */
-    vm.createGame = function(formData) {
-        Game.createGame(formData)
-        .error(function(data){
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.createGame = function(formData) {
+      Game.createGame(formData)
+      .error(function(data){
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -58,21 +71,21 @@
      * @param   userId (implicit param, used to call Game.getGame)
      * @return  A single game
      */
-    vm.getGame = function(gameId){
-        Game.getGame(gameId, $window.sessionStorage.userId)
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
+     vm.getGame = function(gameId){
+      Game.getGame(gameId, $window.sessionStorage.userId)
+      .error(function(data) {
+        /* Act on the event */
+      })
+      .success(function(data){
             // if user is admin of game, store admin id
             if(data.data.admin_id){
-                vm.storeAdminId(data.data.admin_id);
+              vm.storeAdminId(data.data.admin_id);
             }
             // if user is player of game, store player id
             else if(data.data.player_id){
-                vm.storePlayerId(data.data.player_id);
+              vm.storePlayerId(data.data.player_id);
             }
-        });
+          });
     }
 
     /**
@@ -81,14 +94,14 @@
      * @param  userId
      * @return user_id, game_id, player_id
      */
-    vm.joinGame = function(gameId, userId) {
-        Game.joinGame(gameId, userId)
-        .error(function(data){
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.joinGame = function(gameId, userId) {
+      Game.joinGame(gameId, userId)
+      .error(function(data){
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -96,14 +109,14 @@
      * @param  gameId
      * @return TBA
      */
-    vm.deleteGame = function(gameId){
-        Game.deleteGame(gameId)
-        .error(function(data) {
-            /* Act on the event */
-        })
-        .success(function(data){
-            /* Act on the event */
-        });
+     vm.deleteGame = function(gameId){
+      Game.deleteGame(gameId)
+      .error(function(data) {
+        /* Act on the event */
+      })
+      .success(function(data){
+        /* Act on the event */
+      });
     }
 
     /**
@@ -111,43 +124,43 @@
      * @param  adminId
      * @note   $window.sessionStorage only allows strings as values, so we need to JSON.parse and JSON.stringify arrays
      */
-    vm.storeAdminId = function(adminId){
+     vm.storeAdminId = function(adminId){
         // if adminKeys is empty, create new array, push adminId and store the stringified array
         if($window.sessionStorage.adminKeys === ''){
-            var aKeys = [];
-            aKeys.push(adminId);
-            var aks = JSON.stringify(aKeys);
-            $window.sessionStorage.adminKeys = aks;
+          var aKeys = [];
+          aKeys.push(adminId);
+          var aks = JSON.stringify(aKeys);
+          $window.sessionStorage.adminKeys = aks;
         }
         // if adminKeys is not empty, parse what is currently stored into an array, push adminId and store the stringified array
         else {
-            var akp = JSON.parse($window.sessionStorage.adminKeys);
-            akp.push(adminId);
-            var aks = JSON.stringify(akp);
-            $window.sessionStorage.adminKeys = aks;
+          var akp = JSON.parse($window.sessionStorage.adminKeys);
+          akp.push(adminId);
+          var aks = JSON.stringify(akp);
+          $window.sessionStorage.adminKeys = aks;
         }
-    }
+      }
 
     /**
      * Stores player id to $window.sessionStorage (to use for player routes)
      * @param  playerId
      * @note   $window.sessionStorage only allows strings as values, so we need to JSON.parse and JSON.stringify arrays
      */
-    vm.storePlayerId = function(playerId){
+     vm.storePlayerId = function(playerId){
         // if playerKeys is empty, create new array, push playerId and store the stringified array
         if($window.sessionStorage.playerKeys === ''){
-            var pKeys = [];
-            pKeys.push(playerId);
-            var pks = JSON.stringify(pKeys);
-            $window.sessionStorage.playerKeys = pks;
+          var pKeys = [];
+          pKeys.push(playerId);
+          var pks = JSON.stringify(pKeys);
+          $window.sessionStorage.playerKeys = pks;
         }
         // if playerKeys is not empty, parse what is currently stored into an array, push playerId and store the stringified array
         else {
-            var pkp = JSON.parse($window.sessionStorage.playerKeys);
-            pkp.push(playerId);
-            var pks = JSON.stringify(pkp);
-            $window.sessionStorage.playerKeys = pks;
+          var pkp = JSON.parse($window.sessionStorage.playerKeys);
+          pkp.push(playerId);
+          var pks = JSON.stringify(pkp);
+          $window.sessionStorage.playerKeys = pks;
         }
-    }
+      }
 
-  });
+    });

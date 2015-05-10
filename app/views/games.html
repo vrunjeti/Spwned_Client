@@ -6,27 +6,75 @@
 					<th data-field="game-title">Game Name</th>
 					<th data-field="game-capacity">Capacity</th>
 					<th data-field="game-start">Start Date (needs to be updated)</th>
-					</th>					
-				</tr>
-			</thead>
 
-			<tbody>
-				<tr ng-repeat="game in games.allGames">
-					<td>
-						<a href="#/games/{{game._id}}">{{game.title}}</a>
-					</td>
-					<td>{{game.capacity}}</td>
-					<td><!-- {{game.start}} --></td>
-				
-					<td>
-						<a class="waves-effect waves-light btn">Join</a>
-					</td>
-				</tr>			
-			</tbody>
-		</table>
+					<th id="create-game-btn" data-field="game-create">
+						<a class="waves-effect waves-light btn modal-trigger" href="#create-game-modal">
+							<i class="mdi-content-add left"></i>New Game
+						</a>
+						<div id="#create-game-modal" class="modal">
+						</th>					
+					</tr>
+				</thead>
 
-	{{games.allGames}}
+				<tbody>
+					<tr ng-repeat="game in games.allGames">
+						<td>
+							<a href="#/games/{{game._id}}/player">{{game.title}}</a>
+						</td>
+						<td>{{game.capacity}}</td>
+						<td><!-- {{game.start}} --></td>
 
+						<td>
+							<a class="waves-effect waves-light btn">Join</a>
+						</td>
+					</tr>			
+				</tbody>
+			</table>
+			<div id="create-game-modal" class="modal">
+				<div class="modal-content">
+					<h4>Create New Game</h4>
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s6">
+									<input id="game-title" type="text" class="validate">
+									<label for="game-title">Game Name</label>
+								</div>
+								<div class="input-field col s6">
+									<input id="game-capacity" type="number" min="0" max="100" class="validate">
+									<label for="game-capacity">Game Capacity</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<textarea id="game-description" class="materialize-textarea"></textarea>
+									<label for="game-description">Description</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input id="game-start" type="date" class="datepicker">
+									<label for="game-start">Start Date</label>
+								</div>
+								<div class="input-field col s6">
+									<input id="game-end" type="date" class="datepicker">
+									<label for="game-end">End Date</label>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>	
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Create</a>
+				</div>
+			</div>
+
+
+
+
+			<!-- {{games.allGames}} -->
+
+		</div>
 	</div>
-</div>
 </div>

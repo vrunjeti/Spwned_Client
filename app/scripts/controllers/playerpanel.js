@@ -12,11 +12,7 @@ angular.module('spwnedApp')
     // bind vm to 'this'
   	var vm = this;
 
-    $http.get('./data/game.json').success(function(response) {
-      vm.allGames = response.data;
-      vm.gameID = $routeParams._id;
-    });
-
+    
     /**
      * Returns a list of all players with a game of gameId
      * @param  gameId
