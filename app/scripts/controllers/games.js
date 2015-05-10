@@ -11,9 +11,12 @@
  .controller('GamesCtrl', function (Game, $http, $window) {
     // bind vm to 'this'
     var vm = this;
-    var baseUrl = 
+    $window.sessionStorage.baseurl = 'http://45.55.224.229:4000/api/';
+    var baseUrl = $window.sessionStorage.baseurl;
 
-    $http.get('./data/game.json').success(function(response) {
+
+    $http.get(baseUrl+'game').success(function(response) {
+      console.log(response);
       vm.allGames = response.data;
     });
 

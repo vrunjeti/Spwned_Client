@@ -12,6 +12,16 @@ angular.module('spwnedApp')
     // bind vm to 'this'
     var vm = this;
 
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 5 // Creates a dropdown of 15 years to control year
+      });
+    });
+
     /**
      * Delete game (force delete game as opposed to game ending by end date or someone winning)
      * @param  adminId

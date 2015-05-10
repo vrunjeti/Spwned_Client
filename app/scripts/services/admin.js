@@ -11,6 +11,18 @@ angular.module('spwnedApp')
   .factory('admin', function () {
     // will set url once API is hosted
     var url = '';
+
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 5 // Creates a dropdown of 15 years to control year
+      });
+    });
+    
+
     return {
       deleteGame: function (adminId, gameId) {
         return $http.delete(url + 'deleteGame', {

@@ -44,11 +44,11 @@ angular
         controller: 'AdminCtrl',
         controllerAs: 'admin'
       })
-      .when('/games/:gameid/admin/adminpanel', {
+      /*.when('/games/:gameid/admin/adminpanel', {
         templateUrl: 'views/adminpanel.html',
         controller: 'AdminCtrl',
         controllerAs: 'admin'
-      })
+      })*/
       .when('/games/:gameid/admin/kills', {
         templateUrl: 'views/kills.html',
         controller: 'AdminCtrl',
