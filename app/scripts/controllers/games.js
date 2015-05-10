@@ -16,7 +16,6 @@
 
 
     $http.get(baseUrl+'game').success(function(response) {
-      console.log(response);
       vm.allGames = response.data;
     });
 
