@@ -11,13 +11,6 @@
  .controller('GamesCtrl', function (Game, $http, $window, $location, $scope) {
     // bind vm to 'this'
     var vm = this;
-    // $window.sessionStorage.baseurl = 'http://45.55.224.229:4000/api/';
-    // var baseUrl = $window.sessionStorage.baseurl;
-
-
-    // $http.get('game').success(function(response) {
-    //   vm.allGames = response.data;
-    // });
 
     $scope.$on('$viewContentLoaded', function() {
       vm.getAllGames('', false);
@@ -32,8 +25,6 @@
         selectYears: 5 // Creates a dropdown of 15 years to control year
       });
     });
-
-
 
     /**
      * Gets all games
