@@ -10,7 +10,7 @@
 angular.module('spwnedApp')
   .factory('admin', function (Game, $http, $window) {
     // will set url once API is hosted
-    var url = '';
+    var url = 'http://45.55.224.229:4000/api/';
     var vm = this;
 
     $(document).ready(function(){

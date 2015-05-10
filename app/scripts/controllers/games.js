@@ -8,15 +8,19 @@
  * Controller of the spwnedApp
  */
  angular.module('spwnedApp')
- .controller('GamesCtrl', function (Game, $http, $window, $location) {
+ .controller('GamesCtrl', function (Game, $http, $window, $location, $scope) {
     // bind vm to 'this'
     var vm = this;
-    $window.sessionStorage.baseurl = 'http://45.55.224.229:4000/api/';
-    var baseUrl = $window.sessionStorage.baseurl;
+    // $window.sessionStorage.baseurl = 'http://45.55.224.229:4000/api/';
+    // var baseUrl = $window.sessionStorage.baseurl;
 
 
-    $http.get(baseUrl+'game').success(function(response) {
-      vm.allGames = response.data;
+    // $http.get('game').success(function(response) {
+    //   vm.allGames = response.data;
+    // });
+
+    $scope.$on('$viewContentLoaded', function() {
+      vm.getAllGames('', false);
     });
 
     $(document).ready(function(){
@@ -43,7 +47,7 @@
         /* Act on the event */
       })
       .success(function(data){
-        /* Act on the event */
+        vm.allGames = data.data;
       });
     }
 
@@ -74,11 +78,13 @@
      * @return  A single game
      */
      vm.getGame = function(gameId){
-      Game.getGame(gameId, $window.sessionStorage.userId)
-      .error(function(data) {
-        /* Act on the event */
-      })
-      .success(function(data){
+        console.log('game id is:' + gameId);
+        Game.getGame(gameId, $window.sessionStorage.userId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+            console.log(data);
             // if user is admin of game, store admin id
             if(data.data.admin_token){
               vm.storeAdminId(data.data.admin_token);
@@ -89,7 +95,7 @@
               vm.storePlayerId(data.data.player_token);
               $location.path('/games/' + data._id + '/player');
             }
-          });
+        });
     }
 
     /**

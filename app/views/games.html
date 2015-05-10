@@ -11,14 +11,15 @@
 							<i class="mdi-content-add left"></i>New Game
 						</a>
 						<div id="#create-game-modal" class="modal">
-						</th>					
+						</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr ng-repeat="game in games.allGames">
 						<td>
-							<a href="#/games/{{game._id}}/player">{{game.title}}</a>
+							<!-- <a href="#/games/{{game._id}}/player">{{game.title}}</a> -->
+							<a ng-click="games.getGame(game._id)">{{game.title}}</a>
 						</td>
 						<td>{{game.capacity}}</td>
 						<!-- <td>{{game.start}}</td> -->
@@ -26,9 +27,10 @@
 						<td>
 							<a class="waves-effect waves-light btn">Join</a>
 						</td>
-					</tr>			
+					</tr>
 				</tbody>
 			</table>
+			<!-- all games: {{games.allGames}} -->
 			<div id="create-game-modal" class="modal">
 				<div class="modal-content">
 					<h4>Create New Game</h4>
@@ -64,7 +66,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>	
+					<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
 					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Create</a>
 				</div>
 			</div>

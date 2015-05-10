@@ -22,12 +22,14 @@ angular.module('spwnedApp')
      *         or an error message indicating invalid input
      */
     vm.registerUser = function(formData) {
+        // console.log(formData);
         Users.registerUser(formData)
         .error(function(data){
             vm.registerErrorMsg = data.data;
         })
         .success(function(data){
             vm.registerMsg = data.message;
+            vm.login(formData);
         });
     }
 
@@ -38,6 +40,7 @@ angular.module('spwnedApp')
      * @return Relevant error messages or user id on success
      */
     vm.login = function(formData) {
+        console.log(formData);
         Users.login(formData)
         .error(function(data){
             // do something with error message
@@ -49,8 +52,25 @@ angular.module('spwnedApp')
             // create (what will be) arrays to store admin and player ids
             $window.sessionStorage.adminKeys = '';
             $window.sessionStorage.playerKeys = '';
+            // clear formData
+            vm.formData = {};
             // redirect to games view after logging in
             $location.path('/games');
+        });
+    }
+
+    /**
+     * Gets the data associated with a user account
+     * @param  userId
+     * @return relevant user data
+     */
+    vm.getUserAccount = function(userId) {
+        Users.getUserAccount(userId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+
         });
     }
 

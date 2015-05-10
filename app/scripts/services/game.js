@@ -9,8 +9,7 @@
  */
 angular.module('spwnedApp')
   .factory('Game', function ($http) {
-    // will set url once API is hosted
-    var url = '';
+    var url = 'http://45.55.224.229:4000/api/';
     return {
       getAllGames: function (where, count) {
         return $http.get(url + 'game', {
@@ -31,9 +30,8 @@ angular.module('spwnedApp')
         });
       },
       getGame: function(gameId, userId){
-        return $http.get(url + 'game/', {
+        return $http.get(url + 'game/' + gameId, {
           params: {
-            game_id: gameId,
             user_id: userId
           }
         });

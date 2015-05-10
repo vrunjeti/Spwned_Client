@@ -9,11 +9,7 @@
  */
 angular.module('spwnedApp')
   .factory('Messages', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
+    var url = 'http://45.55.224.229:4000/api/'
     // Public API here
     return {
       someMethod: function () {
