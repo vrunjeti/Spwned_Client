@@ -37,7 +37,7 @@ angular.module('spwnedApp')
         });
       },
       joinGame: function(gameId, userId){
-        return $http.post(url + 'game/' + gameId + '/join', {
+        return $http.put(url + 'game/' + gameId + '/join', {
           user_id: userId
         });
       },

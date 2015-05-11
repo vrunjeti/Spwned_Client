@@ -13,11 +13,12 @@
 				</a>
 				<span class="grey-text text-darken-5">
 					<p class="">Capacity: {{game.capacity}}</p>
-				</span>	
+				</span>
 				<p>{{game.description}}</p>
 			</div>
 			<div class="card-action">
-				<a href=""class="waves-effect waves-light btn-flat right">Join</a>
+				<a href=""class="waves-effect waves-light btn-flat left" ng-click="games.getGame(game._id)">View</a>
+				<a href=""class="waves-effect waves-light btn-flat right" ng-click="games.joinGame(game._id, games.currUserId)">Join</a>
 			</div>	<!-- disable button if not admin by adding disabled class -->
 		</div>
 		<!-- <table class="col s12 striped">
@@ -34,7 +35,7 @@
 						</th>
 					</tr>
 				</thead>
-		
+
 				<tbody>
 					<tr ng-repeat="game in games.allGames">
 						<td>
@@ -43,7 +44,7 @@
 						</td>
 						<td>{{game.capacity}}</td>
 						<td>{{game.start}}</td>
-		
+
 						<td>
 							<a class="waves-effect waves-light btn">Join</a>
 						</td>

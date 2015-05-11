@@ -50,8 +50,8 @@ angular.module('spwnedApp')
             // store user's id for identification
             $window.sessionStorage.userId = data.data._id;
             // create (what will be) arrays to store admin and player ids
-            $window.sessionStorage.adminKeys = '';
-            $window.sessionStorage.playerKeys = '';
+            // $window.sessionStorage.adminKeys = '';
+            // $window.sessionStorage.playerKeys = '';
             // clear formData
             vm.formData = {};
             // redirect to games view after logging in
@@ -81,8 +81,8 @@ angular.module('spwnedApp')
         if(!vm.isLoggedIn()){
             $window.sessionStorage.userId = 'Dummy token for testing purposes';
             // create arrays to store admin and player ids
-            $window.sessionStorage.adminKeys = '';
-            $window.sessionStorage.playerKeys = '';
+            // $window.sessionStorage.adminKeys = '';
+            // $window.sessionStorage.playerKeys = '';
         }
     }
 

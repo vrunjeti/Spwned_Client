@@ -15,6 +15,7 @@
     $scope.$on('$viewContentLoaded', function() {
       vm.getAllGames('', false);
       vm.getUserAccount($window.sessionStorage.userId);
+      vm.currUserId = $window.sessionStorage.userId;
     });
 
     $(document).ready(function(){
@@ -94,12 +95,14 @@
             console.log(data);
             // if user is admin of game, store admin id
             if(data.data.admin_token !== null){
-              vm.storeAdminId(data.data.admin_token);
+              // vm.storeAdminId(data.data.admin_token);
+              $window.sessionStorage[gameId] = data.data.admin_token;
               $location.path('/games/' + data.data._id + '/admin');
             }
             // if user is player of game, store player id
             else if(data.data.player_token !== null){
-              vm.storePlayerId(data.data.player_token);
+              // vm.storePlayerId(data.data.player_token);
+              $window.sessionStorage[gameId] = data.data.player_token;
               $location.path('/games/' + data.data._id + '/player');
             }
         });
@@ -117,7 +120,8 @@
         /* Act on the event */
       })
       .success(function(data){
-        /* Act on the event */
+        console.log(data);
+        vm.getGame(data.data.game_id);
       });
     }
 
