@@ -1,11 +1,31 @@
 <div class="container">
 	<div class="row">
-		<table class="col s12 striped">
+		<h3 class="center-align">Welcome to Spwned, <span class="green-text">{{games.userInfo.first_name}}!</span></h3>
+		<a id="create-game-btn" data-field="game-create" class="waves-effect waves-light btn modal-trigger right" href="#create-game-modal">
+			<i class="mdi-content-add left"></i>New Game
+		</a>
+	</div>
+	<div class="row">
+		<div class="card medium col s6 lime lighten-5" ng-repeat="game in games.allGames">
+			<div class="card-content">
+				<a ng-click="games.getGame(game._id)">
+					<span class="card-title black-text">{{game.title}}</span>
+				</a>
+				<span class="grey-text text-darken-5">
+					<p class="">Capacity: {{game.capacity}}</p>
+				</span>	
+				<p>{{game.description}}</p>
+			</div>
+			<div class="card-action">
+				<a href=""class="waves-effect waves-light btn-flat right">Join</a>
+			</div>	<!-- disable button if not admin by adding disabled class -->
+		</div>
+		<!-- <table class="col s12 striped">
 			<thead>
 				<tr>
 					<th data-field="game-title">Game Name</th>
 					<th data-field="game-capacity">Capacity</th>
-					<!-- <th data-field="game-start">Start Date (needs to be updated)</th> -->
+					<th data-field="game-start">Start Date (needs to be updated)</th>
 					<th id="create-game-btn" data-field="game-create">
 						<a class="waves-effect waves-light btn modal-trigger" href="#create-game-modal">
 							<i class="mdi-content-add left"></i>New Game
@@ -14,22 +34,22 @@
 						</th>
 					</tr>
 				</thead>
-
+		
 				<tbody>
 					<tr ng-repeat="game in games.allGames">
 						<td>
-							<!-- <a href="#/games/{{game._id}}/player">{{game.title}}</a> -->
+							<a href="#/games/{{game._id}}/player">{{game.title}}</a>
 							<a ng-click="games.getGame(game._id)">{{game.title}}</a>
 						</td>
 						<td>{{game.capacity}}</td>
-						<!-- <td>{{game.start}}</td> -->
-
+						<td>{{game.start}}</td>
+		
 						<td>
 							<a class="waves-effect waves-light btn">Join</a>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> -->
 			<!-- all games: {{games.allGames}} -->
 			<div id="create-game-modal" class="modal">
 				<div class="modal-content">

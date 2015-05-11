@@ -8,10 +8,31 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('PlayerpanelCtrl', function (Player, $http, $routeParams) {
+  .controller('PlayerpanelCtrl', function (Users, Player, $http, $scope, $routeParams, $window) {
     // bind vm to 'this'
   	var vm = this;
 
+    $scope.$on('$viewContentLoaded', function() {
+      vm.getUserAccount($window.sessionStorage.userId);
+    });
+
+    /**
+     * Gets the data associated with a user account
+     * @param  userId
+     * @return relevant user data
+     */
+    console.log('before getuseraccount');
+    vm.getUserAccount = function(userId) {
+        Users.getUserAccount(userId)
+        .error(function(data) {
+            console.log(data);
+            /* Act on the event */
+        })
+        .success(function(data){
+            vm.userInfo = data.data;
+            console.log("blabhlabalhb" +vm.userInfo);
+        });
+    }   
     
     /**
      * Returns a list of all players with a game of gameId
