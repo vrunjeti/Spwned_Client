@@ -8,12 +8,21 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('AdminCtrl', function (Admin, $http) {
+  .controller('AdminCtrl', function (Admin, Game, $http, $scope, $routeParams, $window) {
     // bind vm to 'this'
     var vm = this;
 
-    $http.get(baseUrl+'kills').success(function(response) {
-      vm.allGames = response.data;
+    vm.currentGame = $routeParams.gameid;
+
+    // $http.get(baseUrl+'kills').success(function(response) {
+    //   vm.allGames = response.data;
+    // });
+
+    $scope.$on('$viewContentLoaded', function() {
+        console.log(vm.currentGame);
+        // console.log(vm.currentGame);
+        vm.getGame(vm.currentGame);
+        vm.getKills(vm.currentGame);
     });
 
     $(document).ready(function(){
@@ -38,7 +47,7 @@ angular.module('spwnedApp')
             /* Act on the event */
         })
         .success(function(data){
-            /* Act on the event */
+             // Act on the event
         });
     }
 
@@ -72,6 +81,32 @@ angular.module('spwnedApp')
         })
         .success(function(data){
             /* Act on the event */
+        });
+    }
+
+    /**
+     * Gets a single game by id
+     * @param   gameId
+     * @param   userId (implicit param, used to call Game.getGame)
+     * @return  A single game
+     */
+     vm.getGame = function(gameId){
+        Game.getGame(gameId, $window.sessionStorage.userId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+            vm.gameInfo = data.data;
+        });
+    }
+
+    vm.getKills = function(gameId) {
+        Admin.getKills(gameId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+            vm.allKills = data.data;
         });
     }
 

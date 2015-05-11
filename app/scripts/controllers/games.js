@@ -93,14 +93,14 @@
         .success(function(data){
             console.log(data);
             // if user is admin of game, store admin id
-            if(data.data.admin_token){
+            if(data.data.admin_token !== null){
               vm.storeAdminId(data.data.admin_token);
-              $location.path('/games/' + data._id + '/admin');
+              $location.path('/games/' + data.data._id + '/admin');
             }
             // if user is player of game, store player id
-            else if(data.data.player_token){
+            else if(data.data.player_token !== null){
               vm.storePlayerId(data.data.player_token);
-              $location.path('/games/' + data._id + '/player');
+              $location.path('/games/' + data.data._id + '/player');
             }
         });
     }

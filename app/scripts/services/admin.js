@@ -8,21 +8,9 @@
  * Factory in the spwnedApp.
  */
 angular.module('spwnedApp')
-  .factory('admin', function (Game, $http, $window) {
+  .factory('Admin', function ($http) {
     // will set url once API is hosted
     var url = 'http://45.55.224.229:4000/api/';
-    var vm = this;
-
-    $(document).ready(function(){
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
-
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 5 // Creates a dropdown of 15 years to control year
-      });
-    });
-
 
     return {
       deleteGame: function (adminId, gameId) {
@@ -48,6 +36,13 @@ angular.module('spwnedApp')
             admin_id: adminId,
             game_id: gameId
             // other info needed?
+          }
+        });
+      },
+      getKills: function(gameId){
+        return $http.get(url + 'kills', {
+          params: {
+            game_id: gameId
           }
         });
       }
