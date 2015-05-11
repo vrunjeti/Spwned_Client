@@ -8,12 +8,13 @@
  * Controller of the spwnedApp
  */
  angular.module('spwnedApp')
- .controller('GamesCtrl', function (Game, $http, $window, $location, $scope) {
+ .controller('GamesCtrl', function (Game, Users, $http, $window, $location, $scope) {
     // bind vm to 'this'
     var vm = this;
 
     $scope.$on('$viewContentLoaded', function() {
       vm.getAllGames('', false);
+      vm.getUserAccount($window.sessionStorage.userId);
     });
 
     $(document).ready(function(){
@@ -25,6 +26,21 @@
         selectYears: 5 // Creates a dropdown of 15 years to control year
       });
     });
+
+    /**
+     * Gets the data associated with a user account
+     * @param  userId
+     * @return relevant user data
+     */
+    vm.getUserAccount = function(userId) {
+        Users.getUserAccount(userId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data){
+            vm.userInfo = data.data;
+        });
+    }
 
     /**
      * Gets all games
