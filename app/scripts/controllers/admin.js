@@ -21,7 +21,7 @@ angular.module('spwnedApp')
     $scope.$on('$viewContentLoaded', function() {
         vm.getGame(vm.currentGame);
         vm.getKills(vm.currentGame, vm.createFinalKillsList);
-        vm.getUserAccount($window.sessionStorage.userId);
+        // vm.getUserAccount($window.sessionStorage.userId);
     });
 
     $(document).ready(function(){
