@@ -13,6 +13,7 @@ angular.module('spwnedApp')
   	var vm = this;
 
     vm.currentGame = $routeParams.gameid;
+    vm.currPlayerId = $window.sessionStorage[vm.currentGame];
     // vm.otherPlayerInfo = [];
     vm.killList = [];
 
@@ -145,7 +146,7 @@ angular.module('spwnedApp')
             // do something with error
         })
         .success(function(data){
-            // do something
+            $route.reload();
         });
     }
 
