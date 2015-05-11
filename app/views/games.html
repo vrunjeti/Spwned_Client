@@ -5,6 +5,9 @@
 			<i class="mdi-content-add left"></i>New Game
 		</a>
 	</div>
+
+	<p>Game has started: {{games.gameHasStarted}}</p>
+
 	<div class="row">
 		<div class="card medium col s6 lime lighten-5" ng-repeat="game in games.allGames">
 			<div class="card-content">
@@ -15,8 +18,9 @@
 				<p>{{game.description}}</p>
 			</div>
 			<div class="card-action">
-				<a href=""class="waves-effect waves-light btn-flat left" ng-click="games.getGame(game._id)">View</a>
-				<a href=""class="waves-effect waves-light btn-flat right" ng-click="games.joinGame(game._id, games.currUserId)">Join</a>
+					<a href=""class="waves-effect waves-light btn-flat left" ng-click="games.getGame(game._id)" ng-class="games.isInGame[game._id] ? '' : 'hide' ">View</a>
+					<a href=""class="waves-effect waves-light btn-flat right" ng-click="games.joinGame(game._id, games.currUserId)" ng-class="games.isInGame[game._id] ? 'hide' : '' ">Join</a>
+
 			</div>	<!-- disable button if not admin by adding disabled class -->
 		</div>
 

@@ -8,12 +8,15 @@
  * Factory in the spwnedApp.
  */
 angular.module('spwnedApp')
-  .factory('Messages', function () {
+  .factory('Messages', function ($http) {
     var url = 'http://45.55.224.229:4000/api/'
     // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+      getMessages: function (gameid, userid) {
+        return $http.get(url + 'message/g/' + gameid + '/u/' + userid);
+      },
+      sendMessage: function(gameid, userid, msg) {
+      	return $http.post(url + 'message/g/' + gameid + '/u/' + userid, msg);
+      },
     };
   });

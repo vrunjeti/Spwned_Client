@@ -54,7 +54,7 @@ angular
         controller: 'AdminCtrl',
         controllerAs: 'kills'
       })
-      .when('/messages/p/:playerid', {
+      .when('/messages/g/:gameid/u/:userid', {
         templateUrl: 'views/messages.html',
         controller: 'MessagesCtrl',
         controllerAs: 'messages'

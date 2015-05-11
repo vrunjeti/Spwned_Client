@@ -30,6 +30,10 @@ angular.module('spwnedApp')
       },
       getUserAccount: function(userId) {
         return $http.get(url + 'user/' + userId);
+      },
+
+      getAllUsers: function() {
+        return $http.get(url + 'user');
       }
     }
   });
