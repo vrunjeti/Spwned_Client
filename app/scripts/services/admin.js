@@ -14,12 +14,13 @@ angular.module('spwnedApp')
 
     return {
       deleteGame: function (adminId, gameId) {
-        console.log(adminId);
-        console.log(gameId);
-        return $http.delete(url + 'admin/delete_game',{fuckyou:"hello"});
+        return $http.put(url + 'admin/delete_game', {
+          admin_id: adminId,
+          game_id: gameId
+        });
       },
       removePlayer: function(adminId, playerId, gameId){
-        return $http.delete(url + 'deletePlayer', {
+        return $http.put(url + 'deletePlayer', {
           params: {
             admin_id: adminId,
             player_id: playerId,
@@ -28,13 +29,13 @@ angular.module('spwnedApp')
         });
       },
       startGame: function(adminId, gameId){
-        return $http.put(url + 'admin/startGame', {
-          params: {
+        return $http.put(url + 'admin/start',
+           {
             admin_id: adminId,
             game_id: gameId
             // other info needed?
           }
-        });
+        );
       },
       getKills: function(gameId){
         return $http.get(url + 'kills', {
