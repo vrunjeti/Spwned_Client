@@ -1,1 +1,38 @@
 <p>This is the messages view.</p>
+<div class="row">
+	<a id="new-msg-btn" data-field="new-msg" class="waves-effect waves-light btn modal-trigger right" href="#new-msg-modal">
+		<i class="mdi-content-add left"></i>New Message
+	</a>
+</div>
+
+<div class="row">
+	<ul class="collection">
+	  <li class="collection-item avatar" ng-repeat="msg in msgs">
+	  	<i class="mdi-communication-messenger circle green"></i>
+	     <span class="title">{{ msg.sender }} <i class="mdi-av-play-arrow"></i> {{ msg.recipient }}</span>
+	    <p>{{ msg.body }}</p>
+	    <a class="secondary-content" ng-click="reply(msg.recipient_id)"><i class="small mdi-content-reply"></i></a>
+	  </li>
+	</ul>
+</div>
+
+{{ users }}
+
+<div id="new-msg-modal" class="modal">
+  <div class="modal-content">
+    <h4>New Message</h4>
+    <form>
+    	<!-- <label>To: 
+    		<select ng-model="userid" ng-init="userid=''" ng-options="user._id as user.name for user in users"></select>
+    	</label> -->
+    	<label>Message
+    		<input type="text"/>
+    	</label>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+  </div>
+</div>
+
+
