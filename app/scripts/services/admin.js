@@ -14,12 +14,9 @@ angular.module('spwnedApp')
 
     return {
       deleteGame: function (adminId, gameId) {
-        return $http.delete(url + 'deleteGame', {
-          params: {
-            admin_id: adminId,
-            game_id: gameId
-          }
-        });
+        console.log(adminId);
+        console.log(gameId);
+        return $http.delete(url + 'admin/delete_game',{fuckyou:"hello"});
       },
       removePlayer: function(adminId, playerId, gameId){
         return $http.delete(url + 'deletePlayer', {
