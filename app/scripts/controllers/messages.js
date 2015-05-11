@@ -8,21 +8,32 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('MessagesCtrl', ['Users', 'Messages', '$scope', '$http', '$window', '$location', '$routeParams', function(Users, Messages, $scope, $http, $window, $location, $routeParams) {
+  .controller('MessagesCtrl', ['Game', 'Users', 'Messages', '$scope', '$http', '$window', '$location', '$routeParams', function(Game, Users, Messages, $scope, $http, $window, $location, $routeParams) {
 
   $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
 
+  $scope.rid = '';
+
   $scope.user = $window.sessionStorage.userId;
-  $scope.isAdmin = Users.getAllUsers().success(function(data){
+	Game.getGame($scope.gameid).success(function(data){
+		var game = data.data;
+		$scope.admin_id = game.admin_id;
+		$scope.isAdmin = game.admin_id === $scope.user; 
+		console.log($scope.isAdmin);
+	});
+
+  Users.getAllUsers().success(function(data){
   $scope.users = [];
   	data.data.forEach(function(user){
-  		var index = user.games.indexOf($routeParams.game_id);
-  		if(index > -1) {
-  			user.name = user.first_name + ' ' + user.last_name;
-  			$scope.users.push(user);
+  		if(user._id != $routeParams.userid) {
+  			var index = user.games.indexOf($routeParams.gameid);
+	  		if(index > -1) {
+	  			user.name = user.first_name + ' ' + user.last_name;
+	  			$scope.users.push(user);
+	  		}
   		}
   	});
   });
@@ -43,18 +54,25 @@ angular.module('spwnedApp')
  			
  		});
 
-	$scope.reply = function(recipient_id, body) {
-		var msg = {
+ 	$scope.sendMsg = function() {
+ 		var msg = {
 			game_id : $routeParams.gameid,
 			sender_id : $routeParams.userid,
-			recipient : recipient_id,
-			body : body
+			recipient : $scope.rec,
+			body : $scope.body
 		}
+		console.log(msg);
 
 		Messages.sendMessage($routeParams.gameid, $routeParams.userid, msg)
 			.success(function(data){
 				$location.path('/messages/g/' + $routeParams.gameid + '/u/' + $routeParams.userid);
+			}).error(function(err){
+				console.log(err);
 			});
-	}
+ 	}
+
+ 	$scope.setRec = function(id){
+ 		$scope.rec = id;
+ 	}
 
 }]);

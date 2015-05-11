@@ -17,6 +17,6 @@ angular.module('spwnedApp')
       },
       sendMessage: function(gameid, userid, msg) {
       	return $http.post(url + 'message/g/' + gameid + '/u/' + userid, msg);
-      }
+      },
     };
   });

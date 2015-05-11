@@ -11,28 +11,34 @@
 	  	<i class="mdi-communication-messenger circle green"></i>
 	     <span class="title">{{ msg.sender }} <i class="mdi-av-play-arrow"></i> {{ msg.recipient }}</span>
 	    <p>{{ msg.body }}</p>
-	    <a class="secondary-content" ng-click="reply(msg.recipient_id)"><i class="small mdi-content-reply"></i></a>
 	  </li>
 	</ul>
 </div>
 
-{{ users }}
+<label>Browser Select</label>
+
 
 <div id="new-msg-modal" class="modal">
   <div class="modal-content">
     <h4>New Message</h4>
     <form>
-    	<!-- <label>To: 
-    		<select ng-model="userid" ng-init="userid=''" ng-options="user._id as user.name for user in users"></select>
-    	</label> -->
+    	<div ng-if="!isAdmin">
+    		<label>To: 
+			    <select class="browser-default" ng-model="rec" ng-options="user._id as user.name for user in users">
+			    </select>
+			  </label>
+    	</div>
+    	<div ng-if="isAdmin">
+    		<label>To: 
+    			<input value="Admin" disabled/>
+    		</label>
+    	</div>
     	<label>Message
-    		<input type="text"/>
+    		<input ng-model="body" type="text"/>
     	</label>
     </form>
   </div>
   <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="sendMsg()">Submit</a>
   </div>
 </div>
-
-
