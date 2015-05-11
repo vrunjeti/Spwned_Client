@@ -8,10 +8,14 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('MainCtrl', function (Users, $http, $window, $location) {
+  .controller('MainCtrl', function (Users, $http, $window, $location, $scope) {
     // bind vm to 'this'
     var vm = this;
 
+    $scope.$on('$viewContentLoaded', function() {
+        vm.currentUser = $window.sessionStorage.userId;
+        vm.messageUrl = '#/messages/p/' + vm.currentUser;
+    });
     /**
      * Creates a new user
      * @param  formData.firstName
