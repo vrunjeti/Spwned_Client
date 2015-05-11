@@ -19,6 +19,7 @@ angular.module('spwnedApp')
     $scope.$on('$viewContentLoaded', function() {
       vm.getUserAccount($window.sessionStorage.userId);
       vm.getPlayer($window.sessionStorage[vm.currentGame]);
+
       // vm.getPlayerKills(vm.currentGame, $window.sessionStorage[vm.currentGame]);
     });
 
@@ -52,7 +53,9 @@ angular.module('spwnedApp')
             // do something with error
         })
         .success(function(data){
+            console.log(data);
             vm.playerInfo = data.data;
+            vm.getNextTarget();
             for(var i = 0; i < vm.playerInfo.killed.length; i++){
                 vm.getKillById(vm.playerInfo.killed[i]);
             }
@@ -79,7 +82,6 @@ angular.module('spwnedApp')
             /* Act on the event */
         })
         .success(function(data){
-            console.log(data);
             vm.killList.push(data.data);
         });
     }
@@ -87,6 +89,22 @@ angular.module('spwnedApp')
     /**
      * END BLOCK of getting player's kill history
      */
+
+    /**
+     * The following block is for getting the name of the player's next target
+     */
+
+    vm.getNextTarget = function(){
+        console.log(vm.playerInfo);
+        Player.getPlayer(vm.playerInfo.target_id)
+        .success(function(data){
+            Users.getUserAccount(data.data.user_id)
+            .success(function(data){
+
+                vm.nextTarget = data.data;
+            })
+        });
+    }
 
     vm.getGameInfo = function(gameId) {
         Game.getGame(gameId, $window.sessionStorage.userId)

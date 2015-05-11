@@ -2,28 +2,28 @@
 	<div class="row">
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!			
+			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!
 				</span></span>
-				<span class="grey-text text-darken-5">	
+				<span class="grey-text text-darken-5">
 					<p id="player-capacity">Capacity: {{player.playerInfo}}</p>
 					<p id="player-status">Status: {{player.playerInfo.isAlive}}</p>
 					<p id="player-game">Currently in: {{player.userInfo.game_id}}</p> <!--display game name not ID-->
-				</span>	
+				</span>
 				<p>This is where game description goes...</p>
-			</div>	
-		<!--<div class="card-action">			
-				<a href="#/games" class="right waves-effect waves-red btn-flat">Back</a>	
-				<a href="" class="waves-effect waves-green btn-flat">Join</a>					
-			</div> -->				
+			</div>
+		<!--<div class="card-action">
+				<a href="#/games" class="right waves-effect waves-red btn-flat">Back</a>
+				<a href="" class="waves-effect waves-green btn-flat">Join</a>
+			</div> -->
 		</div>
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-				<span class="card-title black-text">Your Target is: <span id="target-name">Alex Wu</span></span>
+				<span class="card-title black-text">Your Target is: <span id="target-name"> {{player.nextTarget.first_name}} </span></span>
 				<p class=" col s12">REPORT KILL</p>
 				<div class="input-field col s12">
 					<input id="game-title" type="text" class="validate">
-					<label for="game-title">Enter Secret Code</label>							
-				</div>	
+					<label for="game-title">Enter Secret Code</label>
+				</div>
 				<div class="col s6">
 					<a href="#!" class="align-center waves-effect waves-green btn-flat">Submit</a>
 				</div>
@@ -39,5 +39,5 @@
 					</li>
 				</ul>
 			</div>
-		</div>	
+		</div>
 
