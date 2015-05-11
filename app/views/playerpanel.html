@@ -4,12 +4,13 @@
 			<div class="card-content">
 			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!			
 				</span></span>
-				<span class="grey-text text-darken-5">	
-					<p id="player-capacity">Capacity: {{player.playerInfo}}</p>
-					<p id="player-status">Status: {{player.playerInfo.isAlive}}</p>
-					<p id="player-game">Currently in: {{player.userInfo.game_id}}</p> <!--display game name not ID-->
+				<span class="grey-text text-darken-5">
+					<p id="player-game" class="bold">Current Game: {{player.gameInfo.title}}</p> <!--display game name not ID-->
+					<p id="player-capacity">Capacity: {{player.gameInfo.capacity}}</p>
+					<p ng-if="player.playerInfo.isAlive" id="player-status">Status: <span class="green-text">Alive</span></p>
+					<p ng-if="!player.playerInfo.isAlive" id="player-status">Status: <span class="red-text">Dead</span></p>					
 				</span>	
-				<p>This is where game description goes...</p>
+				<p>{{player.gameInfo.description}}</p>
 			</div>	
 		<!--<div class="card-action">			
 				<a href="#/games" class="right waves-effect waves-red btn-flat">Back</a>	
@@ -18,7 +19,7 @@
 		</div>
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-				<span class="card-title black-text">Your Target is: <span id="target-name">Alex Wu</span></span>
+				<span class="card-title black-text">Your Target is: <span id="target-name" class="red-text">TARGET NAME</span></span>
 				<p class=" col s12">REPORT KILL</p>
 				<div class="input-field col s12">
 					<input id="game-title" type="text" class="validate">
@@ -36,8 +37,9 @@
 				<ul id="kill-history-list" class="col s12">
 				<li ng-repeat="kill in player.killList">
 						{{kill.first_name}}
+						{{kill.last_name}}
 					</li>
-				</ul>
+				</ul>	
 			</div>
 		</div>	
 

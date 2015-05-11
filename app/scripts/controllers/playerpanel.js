@@ -20,7 +20,7 @@ angular.module('spwnedApp')
       vm.getUserAccount($window.sessionStorage.userId);
       vm.getPlayer($window.sessionStorage[vm.currentGame]);
       // vm.getPlayerKills(vm.currentGame, $window.sessionStorage[vm.currentGame]);
-    
+      vm.getGameInfo(vm.currentGame);
     });
 
     /**

@@ -8,9 +8,7 @@
 	<div class="row">
 		<div class="card medium col s6 lime lighten-5" ng-repeat="game in games.allGames">
 			<div class="card-content">
-				<a ng-click="games.getGame(game._id)">
-					<span class="card-title black-text">{{game.title}}</span>
-				</a>
+				<span class="card-title black-text">{{game.title}}</span>
 				<span class="grey-text text-darken-5">
 					<p class="">Capacity: {{game.capacity}}</p>
 				</span>
