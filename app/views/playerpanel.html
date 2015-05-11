@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!			
+			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!
 				</span></span>
 				<span class="grey-text text-darken-5">
 					<p id="player-game" class="bold">Current Game: {{player.gameInfo.title}}</p> <!--display game name not ID-->
@@ -19,12 +19,12 @@
 		</div>
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-				<span class="card-title black-text">Your Target is: <span id="target-name" class="red-text">TARGET NAME</span></span>
+				<span class="card-title black-text">Your Target is: <span id="target-name" class="red-text">{{player.nextTarget.first_name}}</span></span>					
 				<p class=" col s12">REPORT KILL</p>
 				<div class="input-field col s12">
 					<input id="game-title" type="text" class="validate">
-					<label for="game-title">Enter Secret Code</label>							
-				</div>	
+					<label for="game-title">Enter Secret Code</label>
+				</div>
 				<div class="col s6">
 					<a href="#!" class="align-center waves-effect waves-green btn-flat">Submit</a>
 				</div>
@@ -41,5 +41,5 @@
 					</li>
 				</ul>	
 			</div>
-		</div>	
+		</div>
 
