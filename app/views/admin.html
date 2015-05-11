@@ -2,59 +2,42 @@
 	<div class="row">
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-				<span class="card-title black-text">Game Name</span>
-				<a href="#edit-game-modal"class="right waves-effect waves-light btn modal-trigger">Edit</a>
+				<span class="card-title black-text">{{admin.gameInfo.title}}</span>
+				<a href=""class="right waves-effect waves-light btn red">Delete</a>
 				<span class="grey-text text-darken-5">
-					<p>Start: </p>
-					<p>End: </p>
-					<p>Capacity: </p>
+					<p class="">Capacity: {{admin.gameInfo.capacity}}</p>
 				</span>	
-				<p>This is where game description goes...</p>
-			</div>	
-			<div class="card-action">				
-				<a href="#/games" class="right waves-effect waves-red btn-flat">Back</a>	
-				<a href="" class="waves-effect waves-green btn-flat">Join</a>					
+				<p>{{admin.gameInfo.description}}</p>
 			</div>				
+		</div>
+		<div class="card col s12 lime lighten-5">
+			<div class="card-content">
+				<span class="card-title black-text">Kills History</span>
+				<table class="col s12 striped">
+				<thead>	
+					<tr>	
+						<th data-field="player-name">Player</th>
+						<th data-field="target-name">Target</th>
+						<th data-field="kill-time">Time of Kill</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tr ng-repeat="kill in admin.allKills"> <!--need to set up routing/angular-->
+					<td>
+						<p>{{kill.killer_id}}</p> <!-- use name not id -->
+					</td>
+					<td>
+						<p>{{kill.target_id}}</p> <!-- use name not id -->
+					</td>
+					<td>
+						<p>{{kill.timeOfKill}}</p> <!-- convert time-->
+					</td>
+					<td>
+						<a href="" class="waves-effect waves-green btn">Edit</a>
+					</td>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div id="edit-game-modal" class="modal">
-	<div class="modal-content">
-		<h4>Edit Game</h4>
-		<div class="row">
-			<form class="col s12">
-				<div class="row">
-					<div class="input-field col s6">
-						<input id="game-title" type="text" class="validate">
-						<label for="game-title">Game Name</label>
-					</div>
-					<div class="input-field col s6">
-						<input id="game-capacity" type="number" min="0" max="100" class="validate">
-						<label for="game-capacity">Game Capacity</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea id="game-description" class="materialize-textarea"></textarea>
-						<label for="game-description">Description</label>
-					</div>
-				</div>
-				<!-- <div class="row">
-					<div class="input-field col s6">
-						<input id="game-start" type="date" class="datepicker">
-						<label for="game-start">Start Date</label>
-					</div>
-					<div class="input-field col s6">
-						<input id="game-end" type="date" class="datepicker">
-						<label for="game-end">End Date</label>
-					</div>
-				</div> -->
-			</form>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<a href="/game" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>	
-		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Create</a>
-	</div>
-</div>

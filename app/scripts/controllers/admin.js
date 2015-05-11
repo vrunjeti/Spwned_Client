@@ -97,6 +97,7 @@ angular.module('spwnedApp')
         })
         .success(function(data){
             vm.gameInfo = data.data;
+            console.log(vm.gameInfo);
         });
     }
 
