@@ -23,9 +23,10 @@
       getPlayer: function(playerId){
         return $http.get(url + 'player/' + playerId);
       },
-      reportKill: function(playerId, secretCode){
+      reportKill: function(playerId, gameId, secretCode){
         return $http.put(url + 'player/report', {
           player_id: playerId,
+          game_id: gameId,
           secret_code: secretCode
         });
       },

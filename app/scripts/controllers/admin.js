@@ -145,4 +145,6 @@ angular.module('spwnedApp')
         }
     }
 
+    vm.endGame
+
   });

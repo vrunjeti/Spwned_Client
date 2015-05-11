@@ -140,13 +140,14 @@ angular.module('spwnedApp')
      * @param  secretCode [code that's linked to target, confirms kill]
      * @return relevant kill data
      */
-    vm.reportKill = function(playerId, secretCode){
-        Player.reportKill(playerId, secretCode)
+    vm.reportKill = function(playerId, gameId, secretCode){
+        Player.reportKill(playerId, gameId, secretCode)
         .error(function(data){
             // do something with error
         })
         .success(function(data){
-            $route.reload();
+
+            // $route.reload();
         });
     }
 

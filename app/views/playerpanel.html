@@ -17,7 +17,7 @@
 				<a href="" class="waves-effect waves-green btn-flat">Join</a>
 			</div> -->
 		</div>
-		<div ng-if="player.playerInfo.isAlive && player.gameInfo.hasStarted" class="card col s12 lime lighten-5">
+		<div ng-if="player.gameInfo.hasStarted" class="card col s12 lime lighten-5">
 			<div class="card-content">
 				<span class="card-title black-text">Your Target is: <span id="target-name" class="red-text">{{player.nextTarget.first_name}}</span></span>
 				<p id="player-status">Status: <span class="green-text">Alive</span></p>				
@@ -27,7 +27,7 @@
 					<label for="game-title">Enter Secret Code</label>
 				</div>
 				<div class="col s6">
-					<a href="#!" class="align-center waves-effect waves-green btn-flat" ng-click="player.reportKill(player.currPlayerId, player.secretCode)">Submit</a>
+					<div class="align-center waves-effect waves-green btn-flat" ng-click="player.reportKill(player.currPlayerId, player.gameInfo._id, player.secretCode)">Submit</div>
 				</div>
 			</div>
 		</div>
