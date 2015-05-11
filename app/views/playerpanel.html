@@ -32,10 +32,11 @@
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
 				<span class="card-title red-text">Kill History</span>
+				{{player.otherPlayerInfo}}
 				<ul id="kill-history-list" class="col s12">
-					<!-- <li ng-repeat>
-						ANGULAR STUFF GOES HERE
-					</li> -->
+				<li ng-repeat="kill in player.killList">
+						{{kill.first_name}}
+					</li>
 				</ul>
 			</div>
 		</div>	

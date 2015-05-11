@@ -23,6 +23,7 @@ angular.module('spwnedApp')
         // console.log(vm.currentGame);
         vm.getGame(vm.currentGame);
         vm.getKills(vm.currentGame);
+        
     });
 
     $(document).ready(function(){

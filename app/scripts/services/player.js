@@ -7,8 +7,8 @@
  * # Player
  * Factory in the spwnedApp.
  */
-angular.module('spwnedApp')
-  .factory('Player', function ($http) {
+ angular.module('spwnedApp')
+ .factory('Player', function ($http) {
     // will set url once API is hosted
     var url = 'http://45.55.224.229:4000/api/';
     return {
@@ -29,14 +29,16 @@ angular.module('spwnedApp')
           secret_code: secretCode
         });
       },
-      getKills: function(gameId){
+      getPlayerKills: function(gameId, playerId){
         return $http.get(url + 'kills', {
-          
           params: {
-            game_id: gameId
-            /*killer_id: playerId*/
+            game_id: gameId,
+            killer_id: playerId
           }
         });
-
-    };
+      },
+      getKillById: function(killId){
+        return $http.get(url + 'kill/' + killId);
+      }
+    }
   });
