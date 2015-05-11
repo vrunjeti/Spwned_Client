@@ -2,24 +2,25 @@
 	<div class="row">
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
-			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!
-				</span></span>
-				<span class="grey-text text-darken-5">
-					<p id="player-game" class="bold">Current Game: {{player.gameInfo.title}}</p> <!--display game name not ID-->
-					<p id="player-capacity">Capacity: {{player.gameInfo.capacity}}</p>
-					<p ng-if="player.playerInfo.isAlive" id="player-status">Status: <span class="green-text">Alive</span></p>
-					<p ng-if="!player.playerInfo.isAlive" id="player-status">Status: <span class="red-text">Dead</span></p>
-				</span>
-				<p>{{player.gameInfo.description}}</p>
-			</div>
+				<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!</span><p ng-if="!player.playerInfo.isAlive" id="player-status"class="black-text">You are currently <span class="red-text">dead :(</span></p>			
+			</span>
+			<span class="grey-text text-darken-5">
+				<p id="player-game" class="bold">Current Game: {{player.gameInfo.title}}</p> <!--display game name not ID-->
+				<p>"{{player.gameInfo.description}}"</p>
+				<p id="player-capacity">Capacity: {{player.gameInfo.capacity}}</p>		
+				<p>Secret Code:  <span class="green-text">{{player.playerInfo.secret_code}}</span></p>
+			</span>
+			
+		</div>
 		<!--<div class="card-action">
 				<a href="#/games" class="right waves-effect waves-red btn-flat">Back</a>
 				<a href="" class="waves-effect waves-green btn-flat">Join</a>
 			</div> -->
 		</div>
-		<div class="card col s12 lime lighten-5">
+		<div ng-if="player.playerInfo.isAlive" class="card col s12 lime lighten-5">
 			<div class="card-content">
 				<span class="card-title black-text">Your Target is: <span id="target-name" class="red-text">{{player.nextTarget.first_name}}</span></span>
+				<p id="player-status">Status: <span class="green-text">Alive</span></p>				
 				<p class=" col s12">REPORT KILL</p>
 				<div class="input-field col s12">
 					<input id="game-title" type="text" class="validate" ng-model="player.secretCode">
@@ -35,7 +36,7 @@
 				<span class="card-title red-text">Kill History</span>
 				{{player.otherPlayerInfo}}
 				<ul id="kill-history-list" class="col s12">
-				<li ng-repeat="kill in player.killList">
+					<li ng-repeat="kill in player.killList">
 						{{kill.first_name}}
 						{{kill.last_name}}
 					</li>

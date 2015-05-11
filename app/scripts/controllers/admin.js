@@ -8,10 +8,10 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('AdminCtrl', function (Admin, Game, $http, $scope, $routeParams, $window) {
+  .controller('AdminCtrl', function (Users, Player, Admin, Game, $http, $scope, $routeParams, $window) {
     // bind vm to 'this'
     var vm = this;
-
+    /*vm.getUserAccount($window.sessionStorage.userId);*/
     vm.currentGame = $routeParams.gameid;
 
     // $http.get(baseUrl+'kills').success(function(response) {
@@ -23,6 +23,7 @@ angular.module('spwnedApp')
         // console.log(vm.currentGame);
         vm.getGame(vm.currentGame);
         vm.getKills(vm.currentGame);
+        vm.getUserAccount($window.sessionStorage.userId);
         
     });
 
@@ -43,12 +44,11 @@ angular.module('spwnedApp')
      * @return ______
      */
     vm.deleteGame = function(adminId, gameId){
+        console.log("adminID is " + adminId);
+        console.log(gameId);
         Admin.deleteGame(adminId, gameId)
-        .error(function(data){
-            /* Act on the event */
-        })
         .success(function(data){
-             // Act on the event
+            console.log('User Deleted!')
         });
     }
 
