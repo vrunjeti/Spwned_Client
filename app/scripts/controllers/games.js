@@ -59,6 +59,24 @@
       })
       .success(function(data){
         vm.allGames = data.data;
+        // for(var i = 0; i < vm.allGames.length; i++){
+        //   var gid = vm.allGames[i]._id;
+        //   Game.getGame(gid, $window.sessionStorage.userId)
+        //   .error(function(data){
+        //       // console.log(data.data.hasStarted);
+        //       // console.log(gid);
+        //       if(data.data.hasStarted) {
+        //         vm.gameHasStarted[gid] = true;
+        //       }
+        //       vm.isInGame[gid] = false;
+        //   })
+        //   .success(function(data){
+        //     // console.log(data.data);
+        //       if(data.data.admin_token !== null || data.data.player_token !== null){
+        //         vm.isInGame[gid] = true;
+        //       }
+        //   })
+        // }
       });
     }
 
