@@ -19,7 +19,7 @@ angular.module('spwnedApp')
     // });
 
     $scope.$on('$viewContentLoaded', function() {
-        console.log(vm.currentGame);
+        
         // console.log(vm.currentGame);
         vm.getGame(vm.currentGame);
         vm.getKills(vm.currentGame);
@@ -97,7 +97,6 @@ angular.module('spwnedApp')
         })
         .success(function(data){
             vm.gameInfo = data.data;
-            console.log(vm.gameInfo);
         });
     }
 
@@ -106,9 +105,10 @@ angular.module('spwnedApp')
         .error(function(data) {
             /* Act on the event */
         })
-        .success(function(data){
+        .success(function(data) {
             vm.allKills = data.data;
-        });
+        });    
+        
     }
 
   });

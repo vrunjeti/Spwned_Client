@@ -5,8 +5,8 @@
 			<span class="card-title"><span class="black-text">Welcome,</span> <span class=" green-text">{{player.userInfo.first_name}} {{player.userInfo.last_name}}!			
 				</span></span>
 				<span class="grey-text text-darken-5">	
-					<p>Capacity: </p>
-					<p id="player-status">Status: {{player.userInfo.isAlive}}</p>
+					<p id="player-capacity">Capacity: {{player.playerInfo}}</p>
+					<p id="player-status">Status: {{player.playerInfo.isAlive}}</p>
 					<p id="player-game">Currently in: {{player.userInfo.game_id}}</p> <!--display game name not ID-->
 				</span>	
 				<p>This is where game description goes...</p>
@@ -33,9 +33,9 @@
 			<div class="card-content">
 				<span class="card-title red-text">Kill History</span>
 				<ul id="kill-history-list" class="col s12">
-					<li ng-repeat>
+					<!-- <li ng-repeat>
 						ANGULAR STUFF GOES HERE
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>	

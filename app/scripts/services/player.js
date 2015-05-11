@@ -28,7 +28,15 @@ angular.module('spwnedApp')
           player_id: playerId,
           secret_code: secretCode
         });
-      }
+      },
+      getKills: function(gameId){
+        return $http.get(url + 'kills', {
+          
+          params: {
+            game_id: gameId
+            /*killer_id: playerId*/
+          }
+        });
 
     };
   });

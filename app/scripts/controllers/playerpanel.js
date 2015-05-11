@@ -12,8 +12,12 @@ angular.module('spwnedApp')
     // bind vm to 'this'
   	var vm = this;
 
+    vm.currentGame = $routeParams.gameid;
+
     $scope.$on('$viewContentLoaded', function() {
       vm.getUserAccount($window.sessionStorage.userId);
+      vm.getPlayer();
+      vm.getKills(vm.currentGame);
     });
 
     /**
@@ -21,16 +25,14 @@ angular.module('spwnedApp')
      * @param  userId
      * @return relevant user data
      */
-    console.log('before getuseraccount');
     vm.getUserAccount = function(userId) {
         Users.getUserAccount(userId)
         .error(function(data) {
-            console.log(data);
             /* Act on the event */
         })
         .success(function(data){
             vm.userInfo = data.data;
-            console.log("blabhlabalhb" +vm.userInfo);
+            
         });
     }   
     
@@ -64,6 +66,8 @@ angular.module('spwnedApp')
         })
         .success(function(data){
             // do something with player data
+            vm.playerInfo = data.data;
+            
         });
     }
 
@@ -81,6 +85,17 @@ angular.module('spwnedApp')
         .success(function(data){
             // do something
         });
+    }
+
+    vm.getKills = function(gameId) {
+        Admin.getKills(gameId)
+        .error(function(data) {
+            /* Act on the event */
+        })
+        .success(function(data) {
+            vm.allKills = data.data;
+        });    
+        
     }
 
   });

@@ -30,7 +30,7 @@
 						<p>{{kill.target_id}}</p> <!-- use name not id -->
 					</td>
 					<td>
-						<p>{{kill.timeOfKill}}</p> <!-- convert time-->
+						<p>{{kill.timeOfKills | filter: 'ddd'}}</p> <!-- convert time-->
 					</td>
 				</table>
 			</div>
