@@ -20,7 +20,6 @@ angular.module('spwnedApp')
       vm.getUserAccount($window.sessionStorage.userId);
       vm.getPlayer($window.sessionStorage[vm.currentGame]);
       // vm.getPlayerKills(vm.currentGame, $window.sessionStorage[vm.currentGame]);
-    
     });
 
     /**
@@ -34,9 +33,45 @@ angular.module('spwnedApp')
             /* Act on the event */
         })
         .success(function(data){
-            vm.userInfo = data.data;  
+            vm.userInfo = data.data;
         });
-    } 
+    }
+
+    /**
+     * This next block is for getting the player's kill history
+     */
+
+    /**
+     * Gets the data associated with a player (player is tied to game)
+     * @param  playerId
+     * @return player data
+     */
+    vm.getPlayer = function(playerId){
+        Player.getPlayer(playerId)
+        .error(function(data){
+            // do something with error
+        })
+        .success(function(data){
+            vm.playerInfo = data.data;
+            for(var i = 0; i < vm.playerInfo.killed.length; i++){
+                vm.getKillById(vm.playerInfo.killed[i]);
+            }
+        });
+    }
+
+    vm.getKillById = function(killId) {
+        Player.getKillById(killId)
+        .success(function(data){
+            vm.getUserAccountByPlayerId(data.data.target_id);
+        });
+    }
+
+    vm.getUserAccountByPlayerId = function(playerId){
+        Player.getPlayer(playerId)
+        .success(function(data){
+            vm.getUserAccountByUserId(data.data.user_id);
+        });
+    }
 
     vm.getUserAccountByUserId = function(userId) {
         Users.getUserAccount(userId)
@@ -49,12 +84,9 @@ angular.module('spwnedApp')
         });
     }
 
-    vm.getUserAccountByPlayerId = function(playerId){
-        Player.getPlayer(playerId)
-        .success(function(data){
-            vm.getUserAccountByUserId(data.data.user_id);
-        });
-    } 
+    /**
+     * END BLOCK of getting player's kill history
+     */
 
     vm.getGameInfo = function(gameId) {
         Game.getGame(gameId, $window.sessionStorage.userId)
@@ -65,7 +97,7 @@ angular.module('spwnedApp')
             vm.gameInfo = data.data;
         });
     }
-    
+
     /**
      * Returns a list of all players with a game of gameId
      * @param  gameId
@@ -85,51 +117,6 @@ angular.module('spwnedApp')
     }
 
     /**
-     * Gets the data associated with a player (player is tied to game)
-     * @param  playerId
-     * @return player data
-     */
-    vm.getPlayer = function(playerId){
-        Player.getPlayer(playerId)
-        .error(function(data){
-            // do something with error
-        })
-        .success(function(data){
-            // do something with player data
-            vm.playerInfo = data.data;
-            // console.log(vm.playerInfo);
-            // console.log(vm.playerInfo.killed);
-            for(var i = 0; i < vm.playerInfo.killed.length; i++){
-                vm.getKillById(vm.playerInfo.killed[i]);
-                // console.log(killObject);
-                // vm.getUserAccountByUserId(killObject.target_id);
-            }
-        });
-    }
-
-    vm.getKillById = function(killId) {
-        Player.getKillById(killId)
-        .success(function(data){
-            console.log(data);
-            // return data.data;
-            console.log('TARGET IDDDDDDDDDDDDD: ' + data.data.target_id);
-            vm.getUserAccountByPlayerId(data.data.target_id);
-        });
-    }
-
-    // vm.getOtherPlayer = function(playerId){
-    //     Player.getOtherPlayer(playerId)
-    //     .error(function(data){
-    //         // do something with error
-    //     })
-    //     .success(function(data){
-    //         // do something with player data
-    //         vm.otherPlayerInfo.push(data.data); 
-
-    //     });
-    // }
-
-    /**
      * Player can report a kill
      * @param  playerId   [player reporting the kill, not the target's id]
      * @param  secretCode [code that's linked to target, confirms kill]
@@ -144,18 +131,5 @@ angular.module('spwnedApp')
             // do something
         });
     }
-
-    // vm.getPlayerKills = function(gameId, playerId) {
-    //     Player.getPlayerKills(gameId)
-    //     .error(function(data) {
-    //         /* Act on the event */
-    //     })
-    //     .success(function(data) {
-    //         vm.allKills = data.data;
-    //         for(var i = 0; i < vm.allKills.length; i++){
-    //             vm.getOtherPlayer(vm.allKills[i].target_id);
-    //         }
-    //     });
-    // }
 
   });
