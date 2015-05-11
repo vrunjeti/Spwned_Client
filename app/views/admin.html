@@ -6,31 +6,32 @@
 				<a href=""class="right waves-effect waves-light btn red">Delete</a>
 				<span class="grey-text text-darken-5">
 					<p class="">Capacity: {{admin.gameInfo.capacity}}</p>
-				</span>	
+				</span>
 				<p>{{admin.gameInfo.description}}</p>
-			</div>				
+			</div>
 		</div>
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
 				<span class="card-title black-text">Kills History</span>
 				<table class="col s12">
-				<thead>	
-					<tr>	
+				<thead>
+					<tr>
 						<th data-field="player-name">Player</th>
 						<th data-field="target-name">Target</th>
 						<th data-field="kill-time">Time of Kill</th>
 						<th></th>
 					</tr>
 				</thead>
-				<tr ng-repeat="kill in admin.allKills"> <!--need to set up routing/angular-->
+				<tr ng-repeat="kill in admin.finalKillsList"> <!--need to set up routing/angular-->
 					<td>
-						<p>{{kill.killer_id}}</p> <!-- use name not id -->
+						<p>{{kill.killer}}</p> <!-- use name not id -->
 					</td>
 					<td>
-						<p>{{kill.target_id}}</p> <!-- use name not id -->
+						<p>{{kill.target}}</p> <!-- use name not id -->
 					</td>
 					<td>
-						<p>{{kill.timeOfKills | filter: 'ddd'}}</p> <!-- convert time-->
+						<p>{{kill.timeOfKill}}</p>
+						<!-- convert time-->
 					</td>
 				</table>
 			</div>
