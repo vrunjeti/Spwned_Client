@@ -16,10 +16,10 @@
 			</div>
 			<div class="card-action">
 				<!-- <span ng-class=" games.gameHasStarted[game._id] ? 'hide' : '' "> -->
-					<a href=""class="waves-effect waves-light btn-flat left" ng-click="games.getGame(game._id)" ng-class="games.isInGame[game._id] ? '' : 'hide' ">View</a>
+					<a ng-click="games.getGame(game._id)"class="waves-effect waves-light btn-flat left">View</a>
 				<!-- </span> -->
 				<!-- <span ng-class=" games.gameHasStarted[game._id] ? 'hide' : '' "> -->
-					<a href=""class="waves-effect waves-light btn-flat right" ng-click="games.joinGame(game._id, games.currUserId)" ng-class="games.isInGame[game._id] ? 'hide' : '' ">Join</a>
+					<a ng-click="games.joinGame(game._id, games.currUserId)"class="waves-effect waves-light btn-flat right">Join</a>
 				<!-- </span> -->
 
 			</div>	<!-- disable button if not admin by adding disabled class -->
