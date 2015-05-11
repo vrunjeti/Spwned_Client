@@ -12,6 +12,9 @@
     // bind vm to 'this'
     var vm = this;
 
+    vm.isInGame = [];
+    vm.gameHasStarted = [];
+
     $scope.$on('$viewContentLoaded', function() {
       vm.getAllGames('', false);
       vm.getUserAccount($window.sessionStorage.userId);
@@ -68,14 +71,14 @@
      * @return Relevant game data
      */
      vm.createGame = function(formData) {
-      console.log($window.sessionStorage.userId);
+      // console.log($window.sessionStorage.userId);
       formData.userId = $window.sessionStorage.userId;
       Game.createGame(formData)
       .error(function(data){
         /* Act on the event */
       })
       .success(function(data){
-        console.log(data);
+        // console.log(data);
         $route.reload();
       });
     }
@@ -87,13 +90,13 @@
      * @return  A single game
      */
      vm.getGame = function(gameId){
-        console.log('game id is:' + gameId);
+        // console.log('game id is:' + gameId);
         Game.getGame(gameId, $window.sessionStorage.userId)
         .error(function(data) {
             /* Act on the event */
         })
         .success(function(data){
-            console.log(data);
+            // console.log(data);
             // if user is admin of game, store admin id
             if(data.data.admin_token !== null){
               // vm.storeAdminId(data.data.admin_token);
@@ -121,7 +124,7 @@
         /* Act on the event */
       })
       .success(function(data){
-        console.log(data);
+        // console.log(data);
         vm.getGame(data.data.game_id);
       });
     }
