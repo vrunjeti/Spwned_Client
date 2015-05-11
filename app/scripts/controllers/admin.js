@@ -8,22 +8,20 @@
  * Controller of the spwnedApp
  */
 angular.module('spwnedApp')
-  .controller('AdminCtrl', function (Admin, Game, $http, $scope, $routeParams, $window) {
+  .controller('AdminCtrl', function (Admin, Game, Player, Users, $http, $scope, $routeParams, $window) {
     // bind vm to 'this'
     var vm = this;
-
+    /*vm.getUserAccount($window.sessionStorage.userId);*/
     vm.currentGame = $routeParams.gameid;
 
-    // $http.get(baseUrl+'kills').success(function(response) {
-    //   vm.allGames = response.data;
-    // });
+    vm.allKillersList = [];
+    vm.allTargetsList = [];
+    vm.finalKillsList = [];
 
     $scope.$on('$viewContentLoaded', function() {
-        
-        // console.log(vm.currentGame);
         vm.getGame(vm.currentGame);
-        vm.getKills(vm.currentGame);
-        
+        vm.getKills(vm.currentGame, vm.createFinalKillsList);
+        // vm.getUserAccount($window.sessionStorage.userId);
     });
 
     $(document).ready(function(){
@@ -43,12 +41,11 @@ angular.module('spwnedApp')
      * @return ______
      */
     vm.deleteGame = function(adminId, gameId){
+        console.log("adminID is " + adminId);
+        console.log(gameId);
         Admin.deleteGame(adminId, gameId)
-        .error(function(data){
-            /* Act on the event */
-        })
         .success(function(data){
-             // Act on the event
+            console.log('User Deleted!')
         });
     }
 
@@ -101,15 +98,48 @@ angular.module('spwnedApp')
         });
     }
 
-    vm.getKills = function(gameId) {
+    vm.getKills = function(gameId, callback) {
         Admin.getKills(gameId)
         .error(function(data) {
             /* Act on the event */
         })
         .success(function(data) {
             vm.allKills = data.data;
-        });    
-        
+            console.log(vm.allKills);
+            for(var i = 0; i < vm.allKills.length; i++){
+                Player.getPlayer(vm.allKills[i].killer_id)
+                .success(function(data){
+                    Users.getUserAccount(data.data.user_id)
+                    .success(function(data){
+                        vm.allKillersList.push(data.data.first_name);
+                    });
+                });
+            }
+            for(var j = 0; j < vm.allKills.length; j++){
+                Player.getPlayer(vm.allKills[j].target_id)
+                .success(function(data){
+                    Users.getUserAccount(data.data.user_id)
+                    .success(function(data){
+                        vm.allTargetsList.push(data.data.first_name);
+                        if(vm.allTargetsList.length === vm.allKills.length){
+                            callback();
+                        }
+                    });
+                });
+            }
+        });
+    }
+
+    vm.createFinalKillsList = function(){
+        // console.log(vm.allKills);
+        for(var k = 0; k < vm.allKillersList.length; k++){
+            console.log(vm.allKills[k]);
+            vm.finalKillsList[k] = {
+                killer: vm.allKillersList[k],
+                target: vm.allTargetsList[k],
+                timeOfKill: moment(vm.allKills[k].timeOfKill).format("MMMM Do YYYY, h:mm:ss a")
+            };
+        }
     }
 
   });

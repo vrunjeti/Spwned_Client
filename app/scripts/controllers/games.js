@@ -8,7 +8,7 @@
  * Controller of the spwnedApp
  */
  angular.module('spwnedApp')
- .controller('GamesCtrl', function (Game, Users, $http, $window, $location, $scope) {
+ .controller('GamesCtrl', function (Game, Users, $http, $window, $location, $scope, $route) {
     // bind vm to 'this'
     var vm = this;
 
@@ -64,18 +64,19 @@
      * @param  formData.title
      * @param  formData.description
      * @param  formData.userId
-     * @param  formData.startDate
-     * @param  formData.endDate
      * @param  formData.capacity
      * @return Relevant game data
      */
      vm.createGame = function(formData) {
+      console.log($window.sessionStorage.userId);
+      formData.userId = $window.sessionStorage.userId;
       Game.createGame(formData)
       .error(function(data){
         /* Act on the event */
       })
       .success(function(data){
-        /* Act on the event */
+        console.log(data);
+        $route.reload();
       });
     }
 
