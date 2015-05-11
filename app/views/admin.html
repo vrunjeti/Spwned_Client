@@ -22,6 +22,12 @@
 					{{player}}
 			</ul>
 		</div> -->
+		<div ng-if="admin.gameInfo.isFinished" class="card col s12 lime lighten-5">
+			<div class="card-content">
+				<span class="card-title black-text">The Winner is: <span id="target-name" class="green-text">{{admin.gameInfo.winners}}</span></span>
+			</div>
+		</div>
+
 		<div class="card col s12 lime lighten-5">
 			<div class="card-content">
 				<span class="card-title red-text">Kills History</span>
